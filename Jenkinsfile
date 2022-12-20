@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'building docker image'
                 
-                sh('docker build -t tnithya123/nithya-docker-jenkins-image . ')
+                sh('docker build -t tnithya123/nithya-docker-jenkins-image .')
             }
         }
         
