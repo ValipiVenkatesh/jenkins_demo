@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo 'building docker image'
                 
-                sh('docker build -t tnithya123/nithya_image .')
+                sh('docker build -t tirumalanithya123/nithyaimage .')
             }
         }
         
@@ -14,9 +14,9 @@ pipeline {
         stage('Publish to Dockerhub') {
             steps {             
                 
-                sh('docker login -u tnithya123 -p PRETTY@per$i$t')
+                sh('docker login -u tirumalanithya123 -p nithya@123')
                 
-                sh('docker push tnithya123/nithya_image')
+                sh('docker push tirumalanithya123/nithyaimage')
                 
                 echo 'pushed image to docker hub'
             }
@@ -26,7 +26,7 @@ pipeline {
         stage('pull image from Dockerhub') {
             steps {
                 
-                sh('docker pull tnithya123/nithya_image')
+                sh('docker pull tirumalanithya123/nithyaimage')
                 
                 echo 'pulled image from Dockerhub'
                 
@@ -39,12 +39,12 @@ pipeline {
         
         stage('start a container') {
             steps {
-                sh '''if [ $(docker ps | awk \'{print $NF}\' | grep nithya-jenkins-container123) = \'-nithya-container123\' ]; then
+                sh '''if [ $(docker ps | awk \'{print $NF}\' | grep nithya-jenkins-container123) = \'-nithya-jenkins-container123\' ]; then
                         docker stop "nithya-jenkins-container123"
                         docker rm "nithya-jenkins-container123"
                       fi'''
                
-                sh('docker run -it -d -p 8084:80 --name nithya-jenkins-container123 tnithya123/nithya_image')
+                sh('docker run -it -d -p 8081:80 --name nithya-jenkins-container123 tirumalanithya123/nithyaimage')
                 
                 sh('docker exec nithya-jenkins-container123 service nginx start')
                 
